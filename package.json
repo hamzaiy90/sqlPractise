@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon ./bin/www.js",
-    "createTables": "node ./db/scripts/createTables.js",
-    "populateTables": "node ./db/scripts/populateAuthors.js"
+    "createTables": "node -r dotenv/config ./db/scripts/createTables.js",
+    "populateTables": "node -r dotenv/config ./db/scripts/populateAuthors.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
