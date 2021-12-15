@@ -1,57 +1,24 @@
-import express from 'express';
+import express from "express";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
 
-import { html } from './config.js';
+import indexRouter from "./routes/index.js";
+import booksRouter from "./routes/books.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
 
-import {
-  getRecipes,
-  getRecipeByID,
-  createRecipe,
-  updateRecipeByID,
-} from './models/recipes.js';
-
-app.use(express.static('public'));
+app.use(logger("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
 
-/** DO NOT CHANGE THIS ROUTE - it serves our front-end */
-app.get('/', function (req, res) {
-  res.sendFile(html);
-});
+app.use("/", indexRouter);
+app.use("/books", booksRouter);
 
-/** YOUR ROUTES GO HERE */
-
-app.get('/recipes', (req, res) => {
-  const data = getRecipes();
-  res.json({ success: true, payload: data });
-});
-
-app.get('/recipes/:id', (req, res) => {
-  const data = getRecipeByID(+req.params.id);
-  res.json({ success: true, payload: data });
-});
-
-app.post('/recipes', (req, res) => {
-  const dataLength = getRecipes();
-  const result = req.body;
-  const data = {
-    id: dataLength.length + 1,
-    ...result,
-  };
-  const dataResult = createRecipe(data);
-  res.json({ success: true, payload: dataResult });
-});
-
-app.put('/recipes/:id', (req, res) => {
-  const dataBody = req.body;
-
-  const data = updateRecipeByID(Number(req.params.id), dataBody);
-  res.json({ success: true, payload: data });
-});
-
-/** END OF YOUR ROUTES */
-
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+export default app;

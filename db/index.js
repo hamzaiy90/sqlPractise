@@ -9,9 +9,9 @@ const pool = new pg.Pool({
   // password: 'password',
   // port: process.env.PORT ||,
   connectionString: process.env.DATABSE_URI,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: true,
+  // },
 });
 
 export function query(text, params) {

@@ -1,21 +1,19 @@
 {
-  "name": "workshops_servers",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "workshop-rest-express",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www.js",
+    "createTables": "node ./db/scripts/createTables.js",
+    "populateTables": "node ./db/scripts/populateAuthors.js"
   },
-  "keywords": [],
-  "author": "Chris Meah <chris@schoolofcode.co.uk>",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "nodemon": "~2.0.15",
+    "pg": "^8.7.1"
   }
 }
