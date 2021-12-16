@@ -6,14 +6,9 @@ const pool = new pg.Pool({
   // host: process.env.DB_HOST,
   // port: process.env.DB_PORT,
   // database: process.env.DB_DATABASE,
-  // user: 'newuser',
-  // host: 'localhost',
-  // database: 'postgres',
-  // password: 'password',
-  // port: process.env.PORT ||,
-  connectionString: process.env.DATABSE_URL,
+  connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: true,
+    rejectUnauthorized: false,
   },
 });
 
