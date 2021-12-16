@@ -8,7 +8,7 @@ const populateTables = async () => {
   //     [first_name, last_name]
   //   );
   // });
-  await query('DROP TABLE authors, books;');
+  await query('DROP TABLE authors, book    c vs;');
   // books.forEach(async ({ author_id, title, publishedDate }) => {
   //   console.log({ author_id, title, publishedDate });
   //   return await query(
@@ -16,7 +16,7 @@ const populateTables = async () => {
   //     [author_id, title, publishedDate]
   //   );
   // });
-  console.log('created');
+  console.log('createdd');
 };
 
 populateTables();
